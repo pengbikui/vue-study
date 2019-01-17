@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red
+        }
+        .bgc{
+            background-color: yellow
+        }
+        .bd{
+            border: 5px solid pink;
+        }
+    </style>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div class="app">
+        <h2 :class="['red','bgc',flag ? 'fontsize' : 'bd']">C位出道</h2>
+        <button @click='dianwo'>点我</button>
+    </div>
+    <script>
+        let vm=new Vue({
+            el:'.app',
+            data:{
+                flag:true,
+            },
+            methods:{
+                dianwo(){
+                    this.flag=!this.flag
+                }
+            }
+        })
+    </script>
+</body>
+</html>

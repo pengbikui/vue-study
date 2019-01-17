@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2 v-bind:title="biaoti">动态绑定一个属性</h2>
+        <button @click='dianwo'>点我</button>
+    </div>
+</body>
+<script>
+    new Vue({
+       el:'#app' ,
+       data:{
+        msg1:'v-bind',
+        biaoti:'我是一个title'
+       },
+       methods:{
+           dianwo(){
+               console.log(this);
+           }
+       }
+    })
+</script>
+</html>

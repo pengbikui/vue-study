@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			name:<input type="text" v-model="msg1"/>
+			des:<input type="text" v-model="msg2"/>
+			price:<input type="text" v-model="msg3"/>
+			
+			<ul>
+				<li>
+					{{item.id}}--{{item.name}}--{{item.des}}--{{item.price}}
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		let vm=new Vue({
+			el:'#app',
+			data:{
+				msg:'1',
+				msg2:'2',
+				msg3:'3',
+				
+			list:[{
+				id:1
+			}]
+			}
+		})
+		
+	</script>
+</html>
