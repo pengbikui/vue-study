@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./vue.js"></script>
+        <style>
+            [v-cloak]{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 使用v-cloak能够解决插值表达式闪烁的问题 -->
+            <p v-cloak>{{msg}}</p>
+            <!--插值表达式只能用于元素内部文本的渲染,不能用于属性渲染  -->
+            <!-- v-text属性渲染会覆盖,v-html可以解析HTML标签的结构 -->
+            <p v-text='msg2'></p>
+            <p v-html='msg2'></p>
+            <!-- v-bind:要绑定的属性  简写:
+                v-on :事件绑定机制  简写 @ -->
+            <input type="button" value="按钮" @click="show">
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'123',
+                    msg2:'<h1>哈哈，我是一个大大的H1， 我大，我骄傲</h1>',
+                },
+                methods: {
+                    show:function(){
+                        alert('hello')
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

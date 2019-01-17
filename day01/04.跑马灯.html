@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+           <button @click='start'>动起来</button> 
+           <button @click='stop'>停下来</button>
+           <h3>{{ msg }}</h3>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'~~~曾梦想仗剑走天涯,看一看这世上的繁华~~~',
+                    timerId:''
+                },
+                methods: {
+                    start(){
+                        this.timerId=setInterval(() =>{
+                            var head =this.msg.substr(0,1)
+                            var end =this.msg.substr(1)
+                            this.msg=end+head
+                        },100)
+                    },
+                    stop(){
+                        clearInterval(this.timerId)
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>
