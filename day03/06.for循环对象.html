@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <!-- 遍历对象的时候,除了有val,key,i -->
+        <div id="app">
+            <p v-for="(val, key,i) in items" :key="index">
+                值:{{val}}
+                键:{{key}}
+                索引:{{i}}
+            </p>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    items:{
+                        id:1,
+                        name:'张三',
+                        gender:'男'
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

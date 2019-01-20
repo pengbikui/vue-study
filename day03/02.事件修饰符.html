@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <script src="./lib/vue-2.4.0.js"></script>
+    <style>
+        .inner{
+                height: 150px;
+                background-color: red;
+            }
+            .outer{
+                padding: 50px;
+                background-color: yellow;
+            }
+        </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="inner" @click='div1Handler'>
+            <input type="button" value="点我" @click.stop='btnHandler'>
+        </div>
+    </div>
+    <!-- .stop 阻止冒泡
+        .prevent  阻止默认行为
+        .capture  实现捕获触发事件的机制
+        .self     点击当前元素,才会触发事件处理,并不会真正的阻止事件冒泡-->
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                div1Handler() {
+                    console.log('这是触发了 inner div 的点击事件')
+                },
+                btnHandler() {
+                    console.log('这是触发了 btn 按钮 的点击事件')
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

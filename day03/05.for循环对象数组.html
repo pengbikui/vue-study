@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p v-for="(item, index) in list">
+                id:{{item.id}}
+                Name:{{item.name}}
+            </p>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    list:[
+                        {id:1,name:'aa1'},
+                        {id:2,name:'bb2'},
+                        {id:3,name:'cc3'}
+                    ]
+                }
+            })
+        </script>
+    </body>
+</html>
