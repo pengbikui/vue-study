@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <!-- 
+        组件化:对视图层的逻辑划分,提高了视图层的复用性
+        模块化:对Controller的划分,提高了业务代码的复用性
+
+        组件创建注意事项:
+        组件必须要注册完成后,才可以使用
+        组件名如果注册用了驼峰命名,使用时需要改成-连接
+        组件的模板template中有且只有一个根节点
+         -->
+        <div id="app">
+            <mycom></mycom>
+        </div>
+        <script>
+            //所有创建的组件,template属性指向模板内容只有一个根元素
+            Vue.component('mycom',{
+                template:'<div><h3>这是直接使用 Vue.component 创建出来的组件</h3><span>123</span></div>'
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

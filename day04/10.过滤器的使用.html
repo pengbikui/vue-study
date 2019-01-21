@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{msg | msgFilter('你好世界')}}</p>
+            <input type="text" :value="msg | msgFilter('你好世界')">
+        </div>
+        <script>
+            Vue.filter('msgFilter',function(data,str){
+                return data.replace('Helloworld',str)
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'你好啊世界!Helloworld!'
+                }
+            })
+        </script>
+    </body>
+</html>

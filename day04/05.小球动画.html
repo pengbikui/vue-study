@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+        <style>
+            .ball{
+                width: 20px;
+                height:20px ;
+                border-radius: 50%;
+                background-color:gold;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <input type="button" value="滚回来" @click='flag=!flag'>
+            <transition 
+                @before-enter="beforeEnter"
+                @enter="enter"
+                @after-enter="afterEnter"
+            >
+                <div class="ball" v-if='flag'></div>
+            </transition>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    flag:false
+                },
+                methods: {
+                    beforeEnter(el){
+                        el.style.transform="translate(0,0)"
+                    },
+                    enter(el, done){
+                    // 这句话，没有实际的作用，但是，如果不写，出不来动画效果；
+                    // 可以认为 el.offsetWidth 会强制动画刷新
+                    el.offsetWidth
+                    // enter 表示动画 开始之后的样式，这里，可以设置小球完成动画之后的，结束状态
+                    el.style.transform = "translate(150px, 450px)"
+                    el.style.transition = 'all 1s ease'
+
+                    // 这里的 done， 起始就是 afterEnter 这个函数，也就是说：done 是 afterEnter 函数的引用
+                    done()
+                },
+                afterEnter(el){
+                    // 动画完成之后，会调用 afterEnter
+                    // console.log('ok')
+                    this.flag = !this.flag
+                }
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <mycom></mycom>
+        </div>
+        <div id="app2">
+            <mycom></mycom>
+            <login></login>
+        </div>
+        
+        <template id="tmp1">
+            <div>
+                <h1>这是通过 template 元素,在外部定义的组件结构,这个方式,有代码的只能提示和高亮</h1>
+                <h3>very good</h3>
+            </div>
+        </template>
+        <template id="tmp2">
+            <h1>这是私有login组件</h1>
+        </template>
+        <script>
+            Vue.component('mycom',{
+                template:'#tmp1'
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+            var vm2 = new Vue({
+                el:"#app2",
+                data:{},
+                methods: {},
+                filters: { /* 定义私有过滤器 */ },
+                directives: {/* 定义私有指令 */},
+                components: {
+                    /* 定义私有组件 */
+                    login:{
+                        template:"#tmp2"
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+        <style>
+            li{
+                border: 2px dashed red;
+                margin: 5px;
+                line-height: 35px;
+                padding-left: 5px;
+                font-size: 12px;
+                width: 100%;
+            }
+            li:hover{
+                background-color: gold;
+                transition: all 1s ease;
+            }
+
+            .v-enter,
+            .v-leave-to {
+            opacity: 0;
+            transform: translateY(80px);
+            }
+
+            .v-enter-active,
+            .v-leave-active,
+            .v-move {
+            transition: all 6s ease;
+            }
+
+            .v-leave-active {
+            position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <label>Id: <input type="text" v-model="id"></label>
+                <label>Name: <input type="text" v-model="name"></label>
+                <input type="button" value="添加" @click="add">
+            </div>  
+            <!-- 列表动画需要transition-group包裹
+            appear属性,实现页面刚展示出来的时候,入场时候的效果
+            tag属性指定渲染的元素,默认为span
+        -->
+            <transition-group appear tag="ul">
+                <li v-for="(item, i) in list" :key="item.id" @click="del(i)">
+                    {{item.id}}-----{{item.name}}
+                </li>
+            </transition-group>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    id:'',
+                    name:'',
+                    list:[
+                        { id: 1, name: '赵高' },
+                        { id: 2, name: '秦桧' },
+                        { id: 3, name: '严嵩' },
+                        { id: 4, name: '魏忠贤' } 
+                    ]
+                },
+                methods: {
+                    add(){
+                        this.list.push({id:this.id,name:this.name})
+                        this.id=this.name=''
+                    },
+                    del(i){
+                        this.list.splice(i,1)
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>
