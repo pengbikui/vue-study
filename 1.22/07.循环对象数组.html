@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p v-for="(item, index) in list" :key="index">
+                索引:{{index}}
+                id:{{item.id}}
+                name:{{item.name}}
+            </p>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    list:[
+                        {id:1,name:'刘德华'},
+                        {id:2,name:'张学友'},
+                        {id:3,name:'郭富城'},
+                        {id:4,name:'黎明'}
+                    ]
+                }
+            })
+        </script>
+    </body>
+</html>

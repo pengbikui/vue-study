@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <script src="./lib/vue-2.4.0.js"></script>
+    <link rel="stylesheet" href="./lib/bootstrap-3.3.7.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加品牌</h3>
+            </div>
+            <div class="panel-body form-inline">
+                <label>
+                    Id:
+                    <input type="text" class="form-control" v-model="id">
+                </label>
+
+                <label>
+                    Name:
+                    <input type="text" class="form-control" v-model="name">
+                </label>
+
+                <!-- 在Vue中，使用事件绑定机制，为元素指定处理函数的时候，如果加了小括号，就可以给函数传参了 -->
+                <input type="button" value="添加" class="btn btn-primary" @click="add()">
+
+                <label>
+                    搜索名称关键字：
+                    <input type="text" class="form-control" v-model="keywords">
+                </label>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in list" :key="index">
+                    <td>{{ item.id }}</td>
+                    <td v-text="item.name"></td>
+                    <td>{{ item.ctime }}</td>
+                    <td>
+                        <!-- 在vue中绑定事件时, 可以加() 并且传入实参 -->
+                        <a href="" @click.prevent="del(item.id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                keywords:'',
+                list: [{
+                        id: 1,
+                        name: '奔驰',
+                        ctime: new Date()
+                    },
+                    {
+                        id: 2,
+                        name: '宝马',
+                        ctime: new Date()
+                    }
+                ]
+            },
+            methods: {
+                add() {
+                    this.list.push({
+                        id: this.id,
+                        name: this.name,
+                        ctime: new Date()
+                    })
+                },
+                del(id) {
+                    //根据id删除数据:1.找到要删除这一项的索引.2.根据索引删除
+                    for (var i = 0; i < this.list.length; i++) {
+                        let item = this.list[i]
+                        if (item.id == id) {
+                            this.list.splice(i, 1) 
+                            break
+                        }
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

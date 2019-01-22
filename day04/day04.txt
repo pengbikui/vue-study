@@ -1,0 +1,29 @@
+过渡   动画
+
+transition  把 需要被动画控制的元素,包裹起来    不会渲染html标签
+
+v-enter   进入之前,动画未开始
+
+v-leave-to   离开之后,动画已结束
+
+v-enter-active
+v-leave-active
+
+动画生命周期函数
+v-on:before-enter="beforeEnter"		入场动画开始之前
+  v-on:enter="enter"			入场动画正在进行
+  v-on:after-enter="afterEnter"		入场动画结束了
+  v-on:enter-cancelled="enterCancelled"
+
+
+列表动画 transition-group 包裹
+
+
+  v-on:before-leave="beforeLeave"
+  v-on:leave="leave"
+  v-on:after-leave="afterLeave"
+  v-on:leave-cancelled="leaveCancelled"
+
+组件:组件必须注册后才可以使用
+组件名如果注册了驼峰命名法,使用时需要改成'-'连接
+组件的模板template只有一个根节点

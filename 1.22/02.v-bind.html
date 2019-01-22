@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <!-- v-bind 提供用于绑定属性指令-->
+        <div id="app">
+            <input type="button" :value="val">
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    val:'v-bind  属性绑定'
+                }
+            })
+        </script>
+    </body>
+</html>

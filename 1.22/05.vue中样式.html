@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+        <style>
+            .red {
+                color: red;
+            }
+        
+            .thin {
+                font-weight: 200;
+            }
+        
+            .italic {
+                font-style: italic;
+            }
+        
+            .active {
+                letter-spacing: 0.5em;
+            }
+            </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1 :class='classObj'>这是一个h1</h1>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    flag:true,
+                    classObj:{red:true,thin:true,italic: false, active: false }
+                }
+            })
+        </script>
+    </body>
+</html>
