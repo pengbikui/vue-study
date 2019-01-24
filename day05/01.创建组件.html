@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <com></com>
+        </div>
+
+        <template id="tmp">
+            <div>
+                <p>你是一个p</p>
+                <h1>你是一个h1</h1>
+            </div>
+        </template>
+        
+        <script>
+            Vue.component('com',{
+                template:'#tmp'
+            })
+
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                components: {
+                    "com":{
+                        template:'#tmp'
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

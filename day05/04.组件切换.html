@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>父组件收到的数据是: {{usernameFromLogin}}</p>
+
+        <a href="" @click.prevent='flag=true'>登录</a>
+        <a href="" @click.prevent='flag=false'>注册</a>
+
+        <login @foo='gotIt' :pmsg='msg' v-if='flag'></login>
+        <register :pmsg='msg' v-else='flag'></register>
+    </div>
+
+    <template id="loginTml">
+        <div class="login-container">
+            <h3 @click="pmsg = '我被修改了!!!'">登录组件----{{ pmsg }}</h3>
+            <label>
+                用户名:
+                <input type="text" v-model="username">
+            </label>
+            <input @click="sendUsername" type="button" value="给爸爸">
+        </div>
+    </template>
+
+    <script>
+        // props中定义的数据是单向下行绑定的
+        Vue.component('login', {
+            props: ['pmsg'],
+            data() {
+                return {
+                    username: ''
+                }
+            },
+            //子组件内部调用$emit()方法触发父组件绑定的foo事件,第二个参数
+            methods:{
+                sendUsername(){
+                    this.$emit('foo',this.username)
+                }
+            },
+            template:'#loginTml'
+        })
+
+        Vue.component('register',{
+            template:'<h3>注册组件</h3>'
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: true,
+                msg: '父组件中的数据msg',
+                usernameFromLogin: ''
+            },
+            methods: {
+                gotIt(data) {
+                    this.usernameFromLogin = data
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

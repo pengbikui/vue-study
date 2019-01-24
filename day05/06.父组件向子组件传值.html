@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+        <!-- 父组件可以在引用子组件的时候,通过属性绑定 : 形式,把需要传递给子组件的数据, 以属性绑定的形式传递到子组件内部-->
+        <com :pmsg='msg'></com>
+
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'123是父组件中的数据'
+                },
+                components:{
+                    com:{
+                        data(){ //子组件的数据不是通过父组件传递过来的,而是通过ajax获取
+                            return{
+                                title:'123',
+                                content:'qqq'
+                            }
+                        },
+                        template:'<h1 @click="change">这是子组件 --- {{ pmsg }}</h1>',
+                        props:['pmsg'], //组件中所有的props数据,都是通过父组件传递给子组件
+                        methods: {
+                            change(){
+                                this.pmsg='被修改了'
+                            }
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

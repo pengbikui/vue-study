@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <a href="" @click.prevent="comName='login'">登录</a>
+            <a href="" @click.prevent="comName='register'">注册</a>
+            <!-- :is 属性,指定要展示的组件名称,mode属性用于切换的模式-->
+            <transition mode="out-in">
+                <component :is="comName"></component>
+            </transition>
+        </div>
+        <script>
+            Vue.component('login',{
+                template:'<h3>登录组件</h3>'
+            })
+
+            Vue.component('register',{
+                template:'<h3>注册组件</h3>'
+            })
+
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    comName:'register'
+                }
+            })
+        </script>
+    </body>
+</html>

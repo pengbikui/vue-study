@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter></counter>
+            <hr>
+            <counter></counter>
+            <hr>
+            <counter></counter>
+            <hr>
+        </div>
+        <!-- 组件内部必须返回一个对象,是为了避免多个组件实例内部共享同一个对象 -->
+        <template id="tmp">
+            <div>
+                <input type="button" value="+1" @click="increment">
+                <h3>{{count}}</h3>
+            </div>
+        </template>
+
+        <script>
+            var dataObj = { count: 0 }
+
+            Vue.component('counter',{
+                template:"#tmp",
+                data:function(){
+                    return {
+                        count:0
+                    }
+                },
+                methods: {
+                    increment(){
+                        this.count++
+                    }
+                },
+            })
+            
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>
