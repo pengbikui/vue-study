@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+        <script src="./lib/vue-router-3.0.1.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <router-link to="/login">登录</router-link>
+            <router-link to="/register">注册</router-link>
+
+            <router-view></router-view>
+        </div>
+        <script>
+            var login ={
+                template:'<h1>登录 --- {{ $route.params.id }} --- {{ $route.params.name }}</h1>'
+            }
+
+            var register={
+                template:'<h1>注册</h1>'
+            }
+
+            const router = new VueRouter({
+                routes:[
+                    {path:'/',redirect:'/register'},
+                    {path:'/login',component:login},
+                    {path:'/register',component:register}
+                ]
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                router
+            })
+        </script>
+    </body>
+</html>
