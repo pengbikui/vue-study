@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+        <script src="./lib/vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="firstname" @keyup="getFullname"> +
+            <input type="text" v-model="lastname" @keyup="getFullname"> =
+            <input type="text" v-model="fullname">
+
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    firstname:'',
+                    lastname:'',
+                    fullname:''
+                },
+                methods: {
+                    getFullname(){
+                        this.fullname=this.firstname+'-'+this.lastname
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

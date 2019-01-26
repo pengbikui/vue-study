@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <script src="./lib/vue-2.4.0.js"></script>
+    <script src="./lib/vue-router-3.0.1.js"></script>
+    <style>
+        .news-list-container .news-list-ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .news-list-container .news-list-ul li {
+            border: 1px dashed pink;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+
+    <template id="news-list">
+        <div class="news-list-container">
+            <h1>这是列表页</h1>
+            <ul class="news-list-ul">
+                <!-- query传参 -->
+                <!-- <router-link
+                    v-for="news in newsList"
+                    :key="news.id"
+                    tag="li"
+                    :to="'/newsInfo?id=' + news.id">
+                        <p>标题: {{ news.title }}</p>
+                        <p>内容简介: {{ news.content }}</p>
+                    </router-link> -->
+
+                <!-- 必须加 ：属性绑定，否则只表示纯文本字符串 -->
+                <router-link v-for="news in newsList" :key="news.id" tag="li" :to="'/newsInfo/'+news.id">
+                    <p>标题: {{news.title}}</p>
+                    <p>内容: {{news.content}}</p>
+                </router-link>
+            </ul>
+        </div>
+    </template>
+
+    <template id="news-info">
+        <div class="news-info-container">
+            <h1>详情页----- {{$route.params.id}}</h1>
+        </div>
+    </template>
+    <script>
+        //列表页组件
+        let newsListComponent = {
+            template: '#news-list',
+            data() {
+                return {
+                    newsList: [{
+                            id: 1,
+                            title: '巨大新闻!!!',
+                            content: '素馅熊今年十八了!成年了!三年以上了解一下!'
+                        },
+                        {
+                            id: 2,
+                            title: '特大新闻!!!',
+                            content: '肉馅熊今年二八了!还没娶老婆!'
+                        },
+                        {
+                            id: 3,
+                            title: '特大新闻!!!',
+                            content: '肉馅熊今年二八了!还没娶老婆!'
+                        },
+                        {
+                            id: 4,
+                            title: '特大新闻!!!',
+                            content: '肉馅熊今年二八了!还没娶老婆!'
+                        },
+                        {
+                            id: 5,
+                            title: '特大新闻!!!',
+                            content: '肉馅熊今年二八了!还没娶老婆!'
+                        },
+                        {
+                            id: 6,
+                            title: '特大新闻!!!',
+                            content: '肉馅熊今年二八了!还没娶老婆!'
+                        },
+                        {
+                            id: 7,
+                            title: '特大新闻!!!',
+                            content: '肉馅熊今年二八了!还没娶老婆!'
+                        }
+                    ]
+                }
+            }
+        }
+        //详情页组件
+        let newsInfoComponent = {
+            template: '#news-info'
+        }
+
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: '/',
+                    redirect: '/newsList'
+                },
+                {
+                    path: '/newsList',
+                    component: newsListComponent
+                },
+                //使用query传参,不需要修改路由的匹配规则
+                //{path:'/newsInfo',component:newsInfoCompont}
+                //使用params传参,需要修改路由的匹配规则
+                {
+                    path: '/newsInfo/:id',
+                    component: newsInfoComponent
+                }
+            ]
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            router
+        })
+    </script>
+</body>
+
+</html>
